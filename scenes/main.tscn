@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dreidjblffyse"]
+
+[ext_resource type="Shader" uid="uid://c2a3jxgwvbysi" path="res://shaders/first.gdshader" id="1_0wfyh"]
+[ext_resource type="Texture2D" uid="uid://rgif5421o2on" path="res://assets/sprites/scene.png" id="1_sugp2"]
+[ext_resource type="Texture2D" uid="uid://pmmks6jcfwut" path="res://assets/sprites/water.jpg" id="3_jyhfs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jyhfs"]
+shader = ExtResource("1_0wfyh")
+shader_parameter/color_filter_r = 0.0
+shader_parameter/color_filter_g = 0.0
+shader_parameter/color_filter_b = 0.16999999620016
+shader_parameter/wave_frequency = 10.000000149012
+shader_parameter/wave_speed = 1.4399999678131201
+shader_parameter/wave_amplitude = 0.00999999977648
+
+[node name="Main" type="Node2D"]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(556, 409.0001)
+scale = Vector2(1.9216666, 1.9216665)
+texture = ExtResource("1_sugp2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_jyhfs")
+position = Vector2(575, 525)
+scale = Vector2(2.277832, 0.52797294)
+texture = ExtResource("3_jyhfs")
