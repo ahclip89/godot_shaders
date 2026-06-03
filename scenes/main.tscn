@@ -1,17 +1,50 @@
-[gd_scene load_steps=5 format=3 uid="uid://dreidjblffyse"]
+[gd_scene load_steps=15 format=3 uid="uid://dreidjblffyse"]
 
 [ext_resource type="Shader" uid="uid://c2a3jxgwvbysi" path="res://shaders/first.gdshader" id="1_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://rgif5421o2on" path="res://assets/sprites/scene.png" id="1_sugp2"]
 [ext_resource type="Texture2D" uid="uid://pmmks6jcfwut" path="res://assets/sprites/water.jpg" id="3_jyhfs"]
+[ext_resource type="Shader" uid="uid://huxrta0u4dry" path="res://shaders/glass.gdshader" id="4_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://7hftxkmd0mvn" path="res://icon.svg" id="5_tefeu"]
+[ext_resource type="Script" uid="uid://s74stiaf7u4h" path="res://scripts/camera_2d.gd" id="6_o6xl0"]
+[ext_resource type="Shader" uid="uid://hfggwflp4nwv" path="res://shaders/color.gdshader" id="7_o6xl0"]
+[ext_resource type="Shader" uid="uid://d3po1lshyqu2k" path="res://shaders/gradient.gdshader" id="7_tipki"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyhfs"]
 shader = ExtResource("1_0wfyh")
+shader_parameter/color_filter_r = 0.28999999351792
+shader_parameter/color_filter_g = 0.71999998390656
+shader_parameter/color_filter_b = 0.999999977648
+shader_parameter/color_filter_a = 1.0
+shader_parameter/wave_frequency = 20.30000030249436
+shader_parameter/wave_speed = 0.93999997898912
+shader_parameter/wave_amplitude = 0.0249999994412
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o6xl0"]
+shader = ExtResource("4_tbgi4")
+shader_parameter/wave_frequency = 90.00000134110799
+shader_parameter/wave_speed = 0.0
+shader_parameter/wave_amplitude = 0.02999999932944
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_85g3d"]
+shader = ExtResource("7_tipki")
+shader_parameter/color_start = Vector4(1, 0, 0, 1)
+shader_parameter/color_end = Vector4(0, 0, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_choun"]
+shader = ExtResource("7_tipki")
+shader_parameter/color_start = Vector4(1, 0, 0, 1)
+shader_parameter/color_end = Vector4(0, 0, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ya4ey"]
+shader = ExtResource("7_tipki")
+shader_parameter/color_start = Vector4(1, 0, 0, 1)
+shader_parameter/color_end = Vector4(0, 0, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tipki"]
+shader = ExtResource("7_o6xl0")
 shader_parameter/color_filter_r = 0.0
 shader_parameter/color_filter_g = 0.0
-shader_parameter/color_filter_b = 0.16999999620016
-shader_parameter/wave_frequency = 10.000000149012
-shader_parameter/wave_speed = 1.4399999678131201
-shader_parameter/wave_amplitude = 0.00999999977648
+shader_parameter/color_filter_b = 0.0
 
 [node name="Main" type="Node2D"]
 
@@ -23,6 +56,64 @@ texture = ExtResource("1_sugp2")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_jyhfs")
-position = Vector2(575, 525)
-scale = Vector2(2.277832, 0.52797294)
+position = Vector2(566.2187, 538)
+scale = Vector2(2.3077393, 0.52797294)
 texture = ExtResource("3_jyhfs")
+
+[node name="Icon" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_o6xl0")
+position = Vector2(323.00006, 349)
+scale = Vector2(1.2929689, 1.0645292)
+texture = ExtResource("5_tefeu")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(552, 125)
+scale = Vector2(11.1650305, 1.2362685)
+script = ExtResource("6_o6xl0")
+
+[node name="red_grd" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_85g3d")
+position = Vector2(251.00002, -18)
+scale = Vector2(4.0148563, 0.14000206)
+texture = ExtResource("5_tefeu")
+
+[node name="green_grd" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_choun")
+position = Vector2(251.00002, 9)
+scale = Vector2(4.0148563, 0.14000206)
+texture = ExtResource("5_tefeu")
+
+[node name="blue_grd" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ya4ey")
+position = Vector2(252.00002, 37)
+scale = Vector2(4.0148563, 0.14000206)
+texture = ExtResource("5_tefeu")
+
+[node name="Red" type="HSlider" parent="."]
+custom_minimum_size = Vector2(500, 0)
+offset_top = -27.0
+offset_right = 500.0
+offset_bottom = -11.0
+max_value = 1.0
+step = 0.01
+
+[node name="Green" type="HSlider" parent="."]
+custom_minimum_size = Vector2(500, 0)
+offset_top = 0.915
+offset_right = 500.0
+offset_bottom = 16.915
+max_value = 1.0
+step = 0.01
+
+[node name="Blue" type="HSlider" parent="."]
+custom_minimum_size = Vector2(500, 0)
+offset_top = 29.985
+offset_right = 500.0
+offset_bottom = 45.985004
+max_value = 1.0
+step = 0.01
+
+[node name="Color" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_tipki")
+position = Vector2(63, -99)
+texture = ExtResource("5_tefeu")
