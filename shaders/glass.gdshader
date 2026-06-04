@@ -6,6 +6,8 @@ uniform float wave_frequency : hint_range(0.1, 100.0, 0.1) = 10.0;
 uniform float wave_speed : hint_range(0.0, 10.0, 0.01) = 5.0;
 uniform float wave_amplitude : hint_range(0.0, 0.1, 0.005) = 0.01;
 
+uniform sampler2D noise_texture;
+
 void fragment() {
 
 	vec2 center = vec2(0.5, 0.5);
@@ -18,9 +20,6 @@ void fragment() {
 
 	vec2 wave_screen_uv = SCREEN_UV + vec2(wave_screen_x, wave_screen_y);
 
-	if ((UV.x <= 0.05 || UV.x >= 0.95) || (UV.y <= 0.05 || UV.y >= 0.95)) {
-		COLOR = vec4(0.0, 0.0, 0.0, 1.0);
-	} else {
-		COLOR = texture(SCREEN_TEXTURE, wave_screen_uv);
-	}
+
+	COLOR = texture(SCREEN_TEXTURE, wave_screen_uv);
 }
